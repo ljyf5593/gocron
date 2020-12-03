@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/go-macaron/binding"
+	"github.com/go-macaron/cors"
 	"github.com/go-macaron/gzip"
 	"github.com/go-macaron/toolbox"
 	"github.com/ouqiang/gocron/internal/modules/app"
@@ -132,7 +133,7 @@ func Register(m *macaron.Macaron) {
 		m.Post("/task/disable/:id", task.Disable)
 		m.Get("/task/run/:id", task.Run)
 		m.Get("/task/log", tasklog.Index)
-	}, apiAuth)
+	}, cors.CORS(), apiAuth)
 
 	// 404错误
 	m.NotFound(func(ctx *macaron.Context) string {
