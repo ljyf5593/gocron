@@ -28,14 +28,6 @@ Vue.use(Router)
 const router = new Router({
   routes: [
     {
-      path: '*',
-      component: NotFound,
-      meta: {
-        noLogin: true,
-        noNeedAdmin: true
-      }
-    },
-    {
       path: '/',
       redirect: '/task'
     },
@@ -151,6 +143,14 @@ const router = new Router({
       path: '/system/login-log',
       name: 'login-log',
       component: LoginLog
+    },
+    {
+      path: '*',
+      component: NotFound,
+      meta: {
+        noLogin: true,
+        noNeedAdmin: true
+      }
     }
   ]
 })
