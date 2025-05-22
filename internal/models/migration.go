@@ -1,12 +1,11 @@
 package models
 
 import (
-	"errors"
 	"fmt"
 	"strconv"
 
-	"github.com/go-xorm/xorm"
 	"github.com/ouqiang/gocron/internal/modules/logger"
+	"xorm.io/xorm"
 )
 
 type Migration struct{}
@@ -21,7 +20,8 @@ func (migration *Migration) Install(dbName string) error {
 	for _, table := range tables {
 		exist, err := Db.IsTableExist(table)
 		if exist {
-			return errors.New("数据表已存在")
+			logger.Error("数据表已存在")
+			continue
 		}
 		if err != nil {
 			return err
